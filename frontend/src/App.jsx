@@ -29,11 +29,13 @@ function App() {
     };
   }, []);
 
-  // Загрузка товаров
+  // Загрузка товаров через безопасный прокси
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(process.env.REACT_APP_API_URL);
+        const response = await axios.get(
+          'https://telegram-shop-proxy.vercel.app/api/products?sheetId=1_Z3ZpyJcLDnjx6aUaRuD6w-b0iBgtOuDCXfU_wYCRh8&sheetName=Магазин%20май%202023'
+        );
         setProducts(response.data);
       } catch (err) {
         setError('Ошибка загрузки товаров. Попробуйте позже.');
